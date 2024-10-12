@@ -1,4 +1,3 @@
-export const one = 1
-export const two = 2
+export * from './fingerprint'
 
 export * from 'lodash-es'

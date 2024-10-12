@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "composite": true,
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
     "module": "ESNext",
     "moduleResolution": "bundler",
+    "resolveJsonModule": true,
     "strict": true,
-    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
     "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
   "include": [
-    "build.config.ts",
-    "vitest.config.ts",
-    "env.d.ts"
+    "cypress/**/*.ts"
   ]
 }
