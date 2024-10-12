@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
     "lib": ["ESNext", "DOM"],
     "baseUrl": ".",
     "module": "ESNext",
@@ -17,7 +19,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts",
-    "test/**/*.ts"
+    "src/**/*",
+    "test/**/*"
   ]
 }

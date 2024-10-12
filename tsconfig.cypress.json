@@ -1,15 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"]
   },
   "include": [
     "cypress/**/*.ts"

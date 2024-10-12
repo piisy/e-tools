@@ -11,6 +11,8 @@
   "include": [
     "build.config.ts",
     "vitest.config.ts",
-    "env.d.ts"
+    "env.d.ts",
+    "cypress.config.ts",
+    "rsbuild.config.ts"
   ]
 }
