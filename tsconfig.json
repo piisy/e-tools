@@ -19,5 +19,9 @@
       "path": "./tsconfig.node.json"
     }
   ],
-  "include": ["src/**/*.ts", "test/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "env.d.ts"
+  ]
 }

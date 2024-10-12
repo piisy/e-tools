@@ -9,6 +9,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "build.config.ts"
+    "build.config.ts",
+    "vitest.config.ts"
   ]
 }
