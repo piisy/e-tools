@@ -13,5 +13,6 @@ export default defineConfig({
     entry: {
       index: './src/demo/index.tsx',
     },
+    tsconfigPath: './tsconfig.app.json',
   },
 })
