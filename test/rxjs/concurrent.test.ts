@@ -3,15 +3,8 @@ import { waitFor } from '@/promise/wait'
 import { describe, expect, it, vi } from 'vitest'
 
 describe('concurrent function', () => {
-  beforeEach(() => {
-    vi.useFakeTimers()
-  })
-
-  afterEach(() => {
-    vi.useRealTimers()
-  })
-
   it('限制最大并发数', async () => {
+    vi.useFakeTimers()
     const tasks = [
       async () => {
         await waitFor(300)
@@ -39,6 +32,7 @@ describe('concurrent function', () => {
     // 验证执行顺序是按照完成时间排序的
     expect(preserveOrderResults).toEqual([1, 2, 3])
     expect(nonPreserveOrderResults).toEqual([2, 3, 1])
+    vi.useRealTimers()
   })
 
   it('应该处理任务中的错误', async () => {
@@ -58,18 +52,17 @@ describe('concurrent function', () => {
     ]
 
     const fastFailPromise = concurrent(tasks)
-    // const nonFastFailPromise = concurrent(tasks, {
-    //   fastFail: false,
-    // })
-    await vi.runAllTimersAsync()
+    const nonFastFailPromise = concurrent(tasks, {
+      fastFail: false,
+    })
     await expect(fastFailPromise).rejects.toThrow('Task failed')
-    // await expect(nonFastFailPromise).resolves.toEqual([
-    //   1,
-    //   expect.objectContaining({
-    //     message: 'Task failed',
-    //   }),
-    //   3,
-    // ])
+    await expect(nonFastFailPromise).resolves.toEqual([
+      1,
+      expect.objectContaining({
+        message: 'Task failed',
+      }),
+      3,
+    ])
   })
 
   it('应该处理空任务数组', async () => {

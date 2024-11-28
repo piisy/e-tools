@@ -11,6 +11,14 @@ import { describe, expect, it, vi } from 'vitest'
  * - exhaustMap: 忽略新值直到当前内部 Observable 完成
  */
 describe('xxxMap vs xxxMap', () => {
+  beforeAll(() => {
+    vi.useFakeTimers()
+  })
+
+  afterAll(() => {
+    vi.useRealTimers()
+  })
+
   /**
    * mergeMap 的并发性:
    * 1. mergeMap 允许并发处理多个内部 Observable
@@ -21,7 +29,6 @@ describe('xxxMap vs xxxMap', () => {
    *    - 100ms后第一个 Observable 完成,输出0
    */
   it('mergeMap', async () => {
-    vi.useFakeTimers()
     const values: number[] = []
     const subscription = interval(100).pipe(
       mergeMap((value, index) => {
@@ -50,7 +57,6 @@ describe('xxxMap vs xxxMap', () => {
    *    - 然后处理 index=1,立即输出1
    */
   it('contactMap', async () => {
-    vi.useFakeTimers()
     const values: number[] = []
     const subscription = interval(100).pipe(
       concatMap((value, index) => {
@@ -80,7 +86,6 @@ describe('xxxMap vs xxxMap', () => {
    *    - index=1 立即输出值1
    */
   it('switchMap', async () => {
-    vi.useFakeTimers()
     const values: number[] = []
     const subscription = interval(100).pipe(
       switchMap((value, index) => {
@@ -112,7 +117,6 @@ describe('xxxMap vs xxxMap', () => {
    *    - 300ms时，index=2 的 Observable 完成并输出 2
    */
   it('exhaustMap', async () => {
-    vi.useFakeTimers()
     const values: number[] = []
     const subscription = interval(100).pipe(
       exhaustMap((value, index) => {
